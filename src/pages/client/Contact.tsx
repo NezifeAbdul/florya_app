@@ -1,5 +1,5 @@
 
-import ContactHero from "../../components/contact/Contacthero";
+import ContactHero from "../../components/contact/ContactHero";
 import ContactInfoCards from "../../components/contact/ContactInfoCards";
 import GetInTouch from "../../components/contact/GetInTouch";
 
