@@ -18,7 +18,7 @@ const ReviewCarousel = () => {
   const { t, i18n } = useTranslation();
   const swiper = useRef<SwiperType | null>(null);
   const { data = [] } = useLatestReviews(10);
-  const reviews = data.filter((r) => r.comment?.trim());
+  const reviews = (Array.isArray(data) ? data : []).filter((r) => r.comment?.trim());
 
   if (reviews.length === 0) return null;
 

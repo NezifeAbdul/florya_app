@@ -40,5 +40,5 @@ export const getBlogById = async (id: number): Promise<Blog> => {
 
 export const getBlogCategories = async (): Promise<BlogCategory[]> => {
   const res = await axiosInstance.get<BlogCategory[]>("/BlogCategories");
-  return res.data;
+  return Array.isArray(res.data) ? res.data : [];
 };
