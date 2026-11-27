@@ -1,4 +1,4 @@
-const BASE_URL = (import.meta.env.VITE_API_URL as string).replace("/api", "");
+const BASE_URL = ((import.meta.env.VITE_API_URL as string | undefined) ?? "").replace("/api", "");
 
 export const imageUrl = (url?: string | null): string => {
   if (!url) return "";

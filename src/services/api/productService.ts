@@ -1,7 +1,7 @@
 import axiosInstance from "../../lib/axiosInstance";
 import type { Product, ProductDetail, ProductListResponse } from "../../types/product.types";
 
-const apiUrl = (import.meta.env.VITE_API_URL as string) || "http://localhost:5100/api";
+const apiUrl = ((import.meta.env.VITE_API_URL as string | undefined) ?? "") || "http://localhost:5100/api";
 const BASE_URL = apiUrl.replace(/\/api\/?$/, "");
 
 const fixImageUrl = (url: string): string => {

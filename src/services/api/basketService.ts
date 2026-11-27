@@ -5,7 +5,7 @@ import type {
   UpdateBasketItemPayload,
 } from "../../types/basket.types";
 
-const BASE_URL = (import.meta.env.VITE_API_URL as string).replace("/api", "");
+const BASE_URL = ((import.meta.env.VITE_API_URL as string | undefined) ?? "").replace("/api", "");
 
 const fixImageUrl = (url: string): string => {
   const cleaned = url.replace(/\/images\/(\w+)\/\/images\/\w+\//, "/images/$1/");
