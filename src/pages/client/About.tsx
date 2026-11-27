@@ -13,6 +13,7 @@ import SectionTitle from "../../components/ui/SectionTitle";
 import HeroComponentSecondary from "../../components/ui/HeroComponentSecondary";
 import ReviewCarousel from "../../components/commoncomp/ReviewComponent";
 import BrandsComponent from "../../components/commoncomp/BrandsComponent";
+import ServicesStrip from "../../components/commoncomp/ServicesStrip";
 
 const STATS = [
   { id: "stat1", end: 120, key: "stat1" },
@@ -144,6 +145,7 @@ const About = () => {
       </section>
 
       <ReviewCarousel />
+      <ServicesStrip />
     </div>
   );
 };

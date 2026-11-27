@@ -14,19 +14,11 @@ import { useCollections } from "../../../utils/useCollection";
 import { useLocalized } from "../../../utils/useLocalized";
 import { useMinDelay } from "../../../utils/useMinDelay";
 import type { ProductDetail } from "../../../types/product.types";
-import service1 from "../../../assets/images/products/shipping.png";
-import service2 from "../../../assets/images/products/return.png";
-import service3 from "../../../assets/images/products/quantity.png";
+import ServicesStrip from "../../../components/commoncomp/ServicesStrip";
 import leaf from "../../../assets/images/leaf.webp";
 
 
 const ITEMS_PER_PAGE = 6;
-
-const services = [
-  { id: 1, img: service1, key: "shipping" },
-  { id: 2, img: service2, key: "returns" },
-  { id: 3, img: service3, key: "quality" },
-] as const;
 
 type SortOption = "best" | "low" | "high" | "newest";
 
@@ -51,6 +43,8 @@ const Product = () => {
     ? Number(searchParams.get("collectionId"))
     : undefined;
   const category = searchParams.get("category");
+  const catKey = category?.toLowerCase();
+  const heroKey = catKey === "kid" ? "kids" : catKey === "adult" ? "bridal" : "all";
   const search = (searchParams.get("search") ?? "").trim();
 
   const { data: products = [], isLoading, error } = useShopProductsWithDetails();
@@ -201,8 +195,8 @@ const Product = () => {
   return (
     <div className="container product-container">
       <SectionTitle
-        title={t("product.heroTitle")}
-        subtitle={t("product.heroSubtitle")}
+        title={t(`product.hero.${heroKey}.title`)}
+        subtitle={t(`product.hero.${heroKey}.subtitle`)}
         img={leaf}
       />
 
@@ -423,17 +417,7 @@ const Product = () => {
         </div>
       </div>
 
-      <div className="product-services">
-        {services.map((item) => (
-          <div className="service-item" key={item.id}>
-            <div className="service-inner">
-              <img src={item.img} alt="" />
-              <h3>{t(`product.services.${item.key}.title`)}</h3>
-              <p>{t(`product.services.${item.key}.desc`)}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <ServicesStrip />
     </div>
   );
 };

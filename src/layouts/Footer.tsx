@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
-import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import floralLogo from "../../src/assets/images/header/florya_logo.png";
-import { LuPhoneCall, LuMapPin, LuMail, LuArrowUpRight, LuCopyright, LuHeart } from "react-icons/lu";
+import { LuPhoneCall, LuMapPin, LuMail, LuArrowUpRight, LuCopyright } from "react-icons/lu";
 import { RiInstagramLine, RiPinterestLine, RiFacebookBoxLine, RiTiktokLine } from "react-icons/ri";
 import { useNavItems } from "../utils/useNavItems";
 import { sendSubscribe } from "../services/emailService";
@@ -132,13 +131,6 @@ const Footer = () => {
         <p className="ft-copy">
           <LuCopyright /> {new Date().getFullYear()} Florya. {t("footer.rights")}
         </p>
-        <div className="ft-bottom-links">
-          <Link to="/privacy">{t("footer.privacy")}</Link>
-          <LuHeart className="ft-sep" />
-          <Link to="/terms">{t("footer.terms")}</Link>
-          <LuHeart className="ft-sep" />
-          <Link to="/cookies">{t("footer.cookies")}</Link>
-        </div>
       </div>
     </footer>
   );

@@ -6,21 +6,30 @@ const USER_KEY = "auth_user";
 
 export const notifyAuthChange = () => window.dispatchEvent(new Event(AUTH_EVENT));
 
-export const tokenStorage = {
-  getAccess: () => localStorage.getItem(ACCESS_KEY),
-  getRefresh: () => localStorage.getItem(REFRESH_KEY),
+const read = (key: string) => localStorage.getItem(key) ?? sessionStorage.getItem(key);
 
-  setTokens: (access: string, refresh?: string) => {
-    localStorage.setItem(ACCESS_KEY, access);
-    if (refresh) localStorage.setItem(REFRESH_KEY, refresh);
+export const tokenStorage = {
+  getAccess: () => read(ACCESS_KEY),
+  getRefresh: () => read(REFRESH_KEY),
+
+  setTokens: (access: string, refresh?: string, remember = true) => {
+    const target = remember ? localStorage : sessionStorage;
+    const other = remember ? sessionStorage : localStorage;
+
+    other.removeItem(ACCESS_KEY);
+    other.removeItem(REFRESH_KEY);
+
+    target.setItem(ACCESS_KEY, access);
+    if (refresh) target.setItem(REFRESH_KEY, refresh);
     notifyAuthChange();
   },
 
   clear: () => {
-    localStorage.removeItem(ACCESS_KEY);
-    localStorage.removeItem(REFRESH_KEY);
-    localStorage.removeItem(USER_KEY);
-    sessionStorage.removeItem(USER_KEY);
+    [localStorage, sessionStorage].forEach((s) => {
+      s.removeItem(ACCESS_KEY);
+      s.removeItem(REFRESH_KEY);
+      s.removeItem(USER_KEY);
+    });
     notifyAuthChange();
   },
 };

@@ -24,7 +24,7 @@ import SearchBar from "../components/home/SearchBar";
 import LanguageSwitcher from "../components/commoncomp/LanguageSwitcher";
 
 import { useAppDispatch, useAppSelector } from "../utils/useAppDispatch";
-import { resetBasket, toggleBasket } from "../store/basketSlice";
+import { fetchBasketThunk, resetBasket, toggleBasket } from "../store/basketSlice";
 import { useWishlist } from "../utils/wishlistStore";
 import { useToken } from "../utils/authStore";
 import { logout } from "../services/api/authService";
@@ -51,6 +51,10 @@ const Header = () => {
   const navItems = useNavItems();
 
   const loggedIn = !!useToken();
+
+  useEffect(() => {
+    if (loggedIn) dispatch(fetchBasketThunk());
+  }, [loggedIn, dispatch]);
   const { initials, fullName } = useCurrentUser();
 
   const deco1 = dark ? diamond : flower1;

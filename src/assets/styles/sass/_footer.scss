@@ -32,15 +32,6 @@ $ft-faint: var(--ft-faint);
 }
 
 .ft-marquee-band {
-  padding: 14px 0;
-  overflow: hidden;
-  background: $ft-surface;
-  border-top: 1px solid $ft-border;
-  border-bottom: 1px solid $ft-border;
-}
-
-
-.ft-marquee-band {
   padding: 18px 0;
   overflow: hidden;
   background: $ft-surface;
@@ -78,10 +69,11 @@ $ft-faint: var(--ft-faint);
 
 .ft-col {
   min-width: 0;
-  padding: 0 40px 0 0;
+  padding: 0 40px;
   border-right: 1px solid $ft-border;
 
-  &:last-child { padding: 0 0 0 40px; border-right: none; }
+  &:first-child { padding-left: 0; }
+  &:last-child { padding-right: 0; border-right: none; }
 
   @include down(1100px) {
     padding: 32px 24px 32px 0;
@@ -215,27 +207,25 @@ $ft-faint: var(--ft-faint);
 .ft-bottom {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+  justify-content: center;
   padding: 20px 5%;
   background: $ft-surface;
   border-top: 1px solid $ft-border;
+  text-align: center;
 
   @include down(1100px) { padding: 20px 32px; }
-  @include down(600px) { flex-direction: column; align-items: flex-start; padding: 20px 24px; }
+  @include down(600px) { padding: 20px 24px; }
 }
 
-.ft-copy { margin: 0; font-size: 12px; font-weight: 300; letter-spacing: .04em; color: $ft-faint; }
-
-.ft-bottom-links {
-  display: flex;
+.ft-copy {
+  display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-
-  a { font-size: 12px; font-weight: 300; letter-spacing: .04em; color: $ft-faint; transition: color .2s; &:hover { color: $gold; } }
-  .ft-dot { width: 3px; height: 3px; background: $ft-faint; border-radius: 50%; }
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: .04em;
+  color: $ft-faint;
 }
 
 .ft-newsletter-form button:disabled { opacity: .6; cursor: not-allowed; }

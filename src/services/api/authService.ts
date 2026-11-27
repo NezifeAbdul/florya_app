@@ -26,7 +26,7 @@ export const loginRequest = async (payload: LoginFormValues): Promise<AuthRespon
   });
 
   const { accessToken, refreshToken } = res.data.data;
-tokenStorage.setTokens(accessToken, refreshToken);
+  tokenStorage.setTokens(accessToken, refreshToken, !!payload.remember);
 
   return { user: toAuthUser(res.data.data), token: accessToken };
 };
@@ -45,6 +45,8 @@ export const registerRequest = async (payload: RegisterFormValues): Promise<Auth
 
 export const persistSession = (auth: AuthResponse, remember: boolean) => {
   const storage = remember ? localStorage : sessionStorage;
+  const other = remember ? sessionStorage : localStorage;
+  other.removeItem("auth_user");
   storage.setItem("auth_user", JSON.stringify(auth.user));
 };
 

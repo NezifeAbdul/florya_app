@@ -88,6 +88,11 @@ const az = {
     },
   },
   product: {
+    hero: {
+      all: { title: "Gəlinlik və ziyafət donları", subtitle: "Toy, nişan və xüsusi günlər üçün gəlinlik və ziyafət donları, həmçinin balaca qızlar üçün zərif məclis geyimləri." },
+      bridal: { title: "Gəlinlik donları", subtitle: "Toy və nişan gününüz üçün zərif gəlinlik və axşam donları." },
+      kids: { title: "Uşaq ziyafət donları", subtitle: "Ad günü, mərasim və bayramlar üçün balaca qızlara özəl zərif donlar." },
+    },
     heroTitle: "Gəlinlik Donları",
     heroSubtitle:
       "Ağ Kolleksiya: evliliyə yaraşan bias kəsimli donlar, ay işığında rəqs üçün şən məclis geyimləri və rəsmi tədbirlər üçün təmtəraqlı gəlinliklər.",
@@ -297,6 +302,11 @@ const az = {
     stat2Label: "Çatdırılan donlar",
     stat2Desc: "Toy, ad günü və ailə tədbirləri üçün vaxtında çatdırılan donlar.",
   },
+  menu:{
+    dark: "Tünd rejim",
+light: "Açıq rejim",
+settings: "Tənzimləmələr",
+  }
 };
 
 export default az;

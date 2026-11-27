@@ -88,6 +88,11 @@ const en = {
     },
   },
   product: {
+    hero: {
+      all: { title: "Bridal and party dresses", subtitle: "Bridal gowns and party dresses for weddings, engagements and special days, plus elegant occasion dresses for little girls." },
+      bridal: { title: "Bridal dresses", subtitle: "Elegant bridal gowns and evening dresses for your wedding and engagement." },
+      kids: { title: "Party dresses for girls", subtitle: "Elegant dresses made for little girls on birthdays, ceremonies and holidays." },
+    },
     heroTitle: "Bridal Dresses",
     heroSubtitle:
       "The White Collection: bias cut slips for tying the knot, joyful party dresses for moonlit dancing, and sweeping gowns for formal affairs.",
@@ -297,7 +302,11 @@ const en = {
     stat2Label: "Dresses Delivered",
     stat2Desc: "Gowns and party dresses delivered on time for weddings, birthdays and family events.",
   },
+  menu: {
+    dark: "Dark mode",
+light: "Light mode",
+settings: "Settings",
   
-};
+}};
 
 export default en;
