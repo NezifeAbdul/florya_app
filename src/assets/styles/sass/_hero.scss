@@ -13,7 +13,7 @@
 
   .hero-img {
     width: 100%;
-    height: 130%; // parallax üçün əlavə hündürlük
+    height: 130%; 
     object-fit: cover;
     object-position: center top;
     will-change: transform;
@@ -26,7 +26,7 @@
   background: linear-gradient(to bottom, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .45) 100%);
 }
 
-// şəkil üstündədir, mətn hər iki rejimdə ağ qalır
+
 .hero-content-wrapper {
   position: absolute;
   bottom: 50%;
@@ -39,6 +39,8 @@
   color: #fff;
   text-align: center;
   transform: translate(-50%, 50%);
+  
+  
 
   .hero-title {
     display: block;

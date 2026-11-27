@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
+import type { ReactNode } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { ToastContainer } from "react-toastify";
 import AOS from "aos";
@@ -6,37 +7,40 @@ import "aos/dist/aos.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import ClientLayout from "./layouts/ClientLayout";
+import AdminRoute from "./layouts/AdminRoute";
 import Home from "./pages/client/Home";
-import Contact from "./pages/client/Contact";
-import About from "./pages/client/About";
-import Faq from "./pages/client/faq/Faq";
-import Blog from "./pages/client/Blog";
-import Checkout from "./pages/client/Checkout";
-
-
-import Collections from "./pages/client/Collections";
-import Wishlist from "./pages/client/wishlist/Wishlist";
 import Product from "./pages/client/products/Product";
 import ProductDetail from "./pages/client/products/ProductDetail";
-import LoginRegister from "./pages/auth/LoginRegister";
-
-import AdminLayout from "./layouts/AdminLayout";
-
-import DashboardPage from "./pages/admin/DashboardPage";
-import ProductsPage from "./pages/admin/ProductsPage";
-import CategoriesPage from "./pages/admin/CategoriesPage";
-import CollectionsPage from "./pages/admin/CollectionsPage";
-import BlogsPage from "./pages/admin/BlogsPage";
-import BlogCategoriesPage from "./pages/admin/BlogCategoriesPage";
-import FaqsPage from "./pages/admin/FaqsPage";
-import FaqCategoriesPage from "./pages/admin/FaqCategoriesPage";
-import ReviewsPage from "./pages/admin/ReviewsPage";
-import UsersPage from "./pages/admin/UsersPage";
-import OrdersPage from "./pages/admin/OrdersPage";
-import OrderSuccess from "./pages/client/OrderSuccess";
-import AdminRoute from "./layouts/AdminRoute";
 import { Preloader } from "./components/commoncomp/Loader";
 
+const Contact = lazy(() => import("./pages/client/Contact"));
+const About = lazy(() => import("./pages/client/About"));
+const Faq = lazy(() => import("./pages/client/faq/Faq"));
+const Blog = lazy(() => import("./pages/client/Blog"));
+const Checkout = lazy(() => import("./pages/client/Checkout"));
+const Collections = lazy(() => import("./pages/client/Collections"));
+const Wishlist = lazy(() => import("./pages/client/wishlist/Wishlist"));
+const OrderSuccess = lazy(() => import("./pages/client/OrderSuccess"));
+const LoginRegister = lazy(() => import("./pages/auth/LoginRegister"));
+
+const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
+const DashboardPage = lazy(() => import("./pages/admin/DashboardPage"));
+const ProductsPage = lazy(() => import("./pages/admin/ProductsPage"));
+const CategoriesPage = lazy(() => import("./pages/admin/CategoriesPage"));
+const CollectionsPage = lazy(() => import("./pages/admin/CollectionsPage"));
+const BlogsPage = lazy(() => import("./pages/admin/BlogsPage"));
+const BlogCategoriesPage = lazy(() => import("./pages/admin/BlogCategoriesPage"));
+const FaqsPage = lazy(() => import("./pages/admin/FaqsPage"));
+const FaqCategoriesPage = lazy(() => import("./pages/admin/FaqCategoriesPage"));
+const ReviewsPage = lazy(() => import("./pages/admin/ReviewsPage"));
+const UsersPage = lazy(() => import("./pages/admin/UsersPage"));
+const OrdersPage = lazy(() => import("./pages/admin/OrdersPage"));
+
+const PageFallback = () => <div style={{ minHeight: "60vh" }} aria-busy="true" />;
+
+const Lazy = ({ children }: { children: ReactNode }) => (
+  <Suspense fallback={<PageFallback />}>{children}</Suspense>
+);
 
 function App() {
   useEffect(() => {
@@ -45,47 +49,47 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <ToastContainer position="top-right" autoClose={2500} /> */}
       <ToastContainer position="top-center" autoClose={2500} closeOnClick pauseOnHover />
       <Preloader />
 
       <Routes>
         <Route element={<ClientLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/blog" element={<Blog />} />
           <Route path="/product" element={<Product />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
-          <Route path="/collections" element={<Collections />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/login" element={<LoginRegister />} />
-          <Route path="/order-success" element={<OrderSuccess />} />
-          
 
+          <Route path="/contact" element={<Lazy><Contact /></Lazy>} />
+          <Route path="/about" element={<Lazy><About /></Lazy>} />
+          <Route path="/faq" element={<Lazy><Faq /></Lazy>} />
+          <Route path="/blog" element={<Lazy><Blog /></Lazy>} />
+          <Route path="/collections" element={<Lazy><Collections /></Lazy>} />
+          <Route path="/checkout" element={<Lazy><Checkout /></Lazy>} />
+          <Route path="/wishlist" element={<Lazy><Wishlist /></Lazy>} />
+          <Route path="/login" element={<Lazy><LoginRegister /></Lazy>} />
+          <Route path="/order-success" element={<Lazy><OrderSuccess /></Lazy>} />
         </Route>
 
         <Route
           path="/admin"
           element={
             <AdminRoute>
-              <AdminLayout />
+              <Lazy>
+                <AdminLayout />
+              </Lazy>
             </AdminRoute>
           }
         >
-          <Route index element={<DashboardPage />} />
-          <Route path="products" element={<ProductsPage />} />
-          <Route path="categories" element={<CategoriesPage />} />
-          <Route path="collections" element={<CollectionsPage />} />
-          <Route path="blogs" element={<BlogsPage />} />
-          <Route path="blog-categories" element={<BlogCategoriesPage />} />
-          <Route path="faqs" element={<FaqsPage />} />
-          <Route path="faq-categories" element={<FaqCategoriesPage />} />
-          <Route path="reviews" element={<ReviewsPage />} />
-          <Route path="users" element={<UsersPage />} />
-          <Route path="orders" element={<OrdersPage />} />
+          <Route index element={<Lazy><DashboardPage /></Lazy>} />
+          <Route path="products" element={<Lazy><ProductsPage /></Lazy>} />
+          <Route path="categories" element={<Lazy><CategoriesPage /></Lazy>} />
+          <Route path="collections" element={<Lazy><CollectionsPage /></Lazy>} />
+          <Route path="blogs" element={<Lazy><BlogsPage /></Lazy>} />
+          <Route path="blog-categories" element={<Lazy><BlogCategoriesPage /></Lazy>} />
+          <Route path="faqs" element={<Lazy><FaqsPage /></Lazy>} />
+          <Route path="faq-categories" element={<Lazy><FaqCategoriesPage /></Lazy>} />
+          <Route path="reviews" element={<Lazy><ReviewsPage /></Lazy>} />
+          <Route path="users" element={<Lazy><UsersPage /></Lazy>} />
+          <Route path="orders" element={<Lazy><OrdersPage /></Lazy>} />
         </Route>
       </Routes>
     </BrowserRouter>

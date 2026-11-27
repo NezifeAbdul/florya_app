@@ -1,6 +1,6 @@
-const TOKEN_KEY = "accessToken";
+import { tokenStorage } from "./tokenStorage";
 
-export const getToken = () => localStorage.getItem(TOKEN_KEY);
+const getToken = () => tokenStorage.getAccess();
 export const isLoggedIn = () => !!getToken();
 
 const readPayload = () => {
@@ -19,9 +19,11 @@ export const getUserId = (): string | null => {
   const p = readPayload();
   if (!p) return "user";
   return String(
-    p.sub ?? p.nameid ??
+    p.sub ??
+      p.nameid ??
       p["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"] ??
-      p.email ?? "user"
+      p.email ??
+      "user"
   );
 };
 

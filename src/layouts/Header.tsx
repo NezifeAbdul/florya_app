@@ -26,7 +26,9 @@ import LanguageSwitcher from "../components/commoncomp/LanguageSwitcher";
 import { useAppDispatch, useAppSelector } from "../utils/useAppDispatch";
 import { resetBasket, toggleBasket } from "../store/basketSlice";
 import { useWishlist } from "../utils/wishlistStore";
-import { logout, useToken } from "../utils/authStore";
+import { useToken } from "../utils/authStore";
+import { logout } from "../services/api/authService";
+import { useHeaderHeight } from "../utils/useHeaderHeight";
 import { useCurrentUser } from "../utils/useCurrentUser";
 import { useTheme } from "../utils/theme";
 import { useNavItems } from "../utils/useNavItems";
@@ -38,6 +40,7 @@ const Header = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const { t } = useTranslation();
+  useHeaderHeight();
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const queryClient = useQueryClient();
@@ -92,8 +95,8 @@ const Header = () => {
 
   const askLogout = () => setConfirmOpen(true);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     dispatch(resetBasket());
     queryClient.removeQueries({ queryKey: ["me"] });
     setMenuOpen(false);

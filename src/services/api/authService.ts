@@ -1,5 +1,6 @@
 import axiosInstance from "../../lib/axiosInstance";
 import type { AuthResponse, AuthUser, LoginApiResponse, UserRole } from "../../types/auth.types";
+import { tokenStorage } from "../../utils/tokenStorage";
 import type { LoginFormValues, RegisterFormValues } from "../../validation/auth.chema";
 
 const toAuthUser = (data: {
@@ -25,8 +26,7 @@ export const loginRequest = async (payload: LoginFormValues): Promise<AuthRespon
   });
 
   const { accessToken, refreshToken } = res.data.data;
-  localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("refreshToken", refreshToken);
+tokenStorage.setTokens(accessToken, refreshToken);
 
   return { user: toAuthUser(res.data.data), token: accessToken };
 };
@@ -53,13 +53,11 @@ export const getRedirectPathByRole = (role: UserRole): string =>
 
 export const logout = async () => {
   try {
-    const refreshToken = localStorage.getItem("refreshToken");
+    const refreshToken = tokenStorage.getRefresh();
     await axiosInstance.post("/auth/revoke-token", { refreshToken });
   } catch {
     // token artıq keçibsə belə localdan təmizlə
   } finally {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("auth_user");
+    tokenStorage.clear();
   }
 };

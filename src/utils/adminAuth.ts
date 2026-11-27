@@ -1,3 +1,6 @@
+import { logout } from "../services/api/authService";
+import { tokenStorage } from "./tokenStorage";
+
 export interface AdminSession {
   name: string;
   email: string;
@@ -14,7 +17,7 @@ const readUser = () => {
 
 export const getAdminSession = (): AdminSession | null => {
   const user = readUser();
-  const token = localStorage.getItem("accessToken");
+  const token = tokenStorage.getAccess();
   if (!user || !token || user.role !== "Admin") return null;
   return {
     name: `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || user.email,
@@ -22,10 +25,7 @@ export const getAdminSession = (): AdminSession | null => {
   };
 };
 
-export const logoutAdmin = () => {
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
-  localStorage.removeItem("auth_user");
-  sessionStorage.removeItem("auth_user");
+export const logoutAdmin = async () => {
+  await logout();
   window.location.href = "/";
 };
