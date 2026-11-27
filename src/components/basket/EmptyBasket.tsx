@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
 import { FiArrowRight } from "react-icons/fi";
 import { PiShoppingBagOpenLight} from "react-icons/pi";
-import { useAppDispatch } from "../../utils/useAppDispatch";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { toggleBasket } from "../../store/basketSlice";
 
 const EmptyBasket = () => {

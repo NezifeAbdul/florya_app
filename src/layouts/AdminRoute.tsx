@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { Navigate, useLocation } from "react-router";
-import { isAdmin, isLoggedIn } from "../utils/auth";
+import { isAdmin, isLoggedIn } from "../auth/auth";
 
 
 const AdminRoute = ({ children }: { children: ReactElement }) => {

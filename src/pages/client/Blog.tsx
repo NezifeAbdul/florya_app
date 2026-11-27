@@ -1,47 +1,44 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { IoSearchOutline } from "react-icons/io5";
 import leaf from "../../assets/images/leaf.webp";
 import SectionTitle from "../../components/ui/SectionTitle";
 import BlogCard from "../../components/blog/BlogCard";
-import { useBlogs } from "../../utils/useBlogs";
+import { useBlogs } from "../../hooks/useBlogs";
 import ReviewCarousel from "../../components/commoncomp/ReviewComponent";
 
 const Blog = () => {
+  const { t } = useTranslation();
   const { data: blogs = [], isLoading, error } = useBlogs();
-console.log("blogs:", blogs);
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
-    if (!query.trim()) return blogs;
-    const q = query.toLowerCase();
-    return blogs.filter(
-      (b) =>
-        b.titleEn.toLowerCase().includes(q) ||
-        b.contentEn?.toLowerCase().includes(q) ||
-        b.categoryTitleEn?.toLowerCase().includes(q)
+    const q = query.trim().toLowerCase();
+    if (!q) return blogs;
+    return blogs.filter((b) =>
+      [b.titleAz, b.titleEn, b.contentAz, b.contentEn, b.categoryTitleAz, b.categoryTitleEn].some((v) =>
+        v?.toLowerCase().includes(q)
+      )
     );
   }, [blogs, query]);
 
   const [featured, ...rest] = filtered;
 
-  if (isLoading) return <div className="container" style={{ padding: "4rem 0", textAlign: "center" }}>Yüklənir...</div>;
-  if (error)     return <div className="container" style={{ padding: "4rem 0", textAlign: "center" }}>Xəta baş verdi</div>;
-
+  if (isLoading)
+    return <div className="container" style={{ padding: "4rem 0", textAlign: "center" }}>{t("blog.loading")}</div>;
+  if (error)
+    return <div className="container" style={{ padding: "4rem 0", textAlign: "center" }}>{t("blog.error")}</div>;
 
   return (
     <div className="blog-wrapper">
       <div className="container">
-        <SectionTitle
-          title="Journal"
-          subtitle="Stories, styling notes and news from the Florya atelier."
-          img={leaf}
-        />
+        <SectionTitle title={t("blog.title")} subtitle={t("blog.subtitle")} img={leaf} />
 
         <div className="blog-search">
           <IoSearchOutline size={16} />
           <input
             type="text"
-            placeholder="Search articles"
+            placeholder={t("blog.search")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -49,7 +46,7 @@ console.log("blogs:", blogs);
 
         {filtered.length === 0 ? (
           <div className="blog-empty">
-            <p>No articles match your search.</p>
+            <p>{t("blog.empty")}</p>
           </div>
         ) : (
           <>
@@ -64,7 +61,7 @@ console.log("blogs:", blogs);
             )}
           </>
         )}
-            <ReviewCarousel />
+        <ReviewCarousel />
       </div>
     </div>
   );

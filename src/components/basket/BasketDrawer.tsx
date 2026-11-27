@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { FiX, FiTrash2, FiMinus, FiPlus } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useAppDispatch, useAppSelector } from "../../utils/useAppDispatch";
-import { useLocalized } from "../../utils/useLocalized";
+import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
+import { useLocalized } from "../../hooks/useLocalized";
 import {
   closeBasket,
   fetchBasketThunk,

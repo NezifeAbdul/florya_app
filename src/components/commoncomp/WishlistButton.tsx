@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useWishlist } from "../../utils/wishlistStore";
 import type { WishlistItem } from "../../utils/wishlistStore";
-import { useRequireAuth } from "../../utils/useRequireAuth";
+import { useRequireAuth } from "../../auth/useRequireAuth";
 
 const WishlistButton = ({ item }: { item: WishlistItem }) => {
   const { t } = useTranslation();

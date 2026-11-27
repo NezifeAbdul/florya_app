@@ -6,9 +6,9 @@ import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import type { Product } from "../../types/product.types";
 import { useWishlist } from "../../utils/wishlistStore";
-import { useRequireAuth } from "../../utils/useRequireAuth";
-import { useAppDispatch } from "../../utils/useAppDispatch";
-import { useLocalized } from "../../utils/useLocalized";
+import { useRequireAuth } from "../../auth/useRequireAuth";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useLocalized } from "../../hooks/useLocalized";
 import { addToBasketThunk } from "../../store/basketSlice";
 
 const EMPTY: string[] = [];

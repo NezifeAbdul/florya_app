@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router";
 import { FiExternalLink, FiLogOut } from "react-icons/fi";
-import { getAdminSession, logoutAdmin } from "../../utils/adminAuth";
+import { getAdminSession, logoutAdmin } from "../../auth/adminAuth";
 import { navGroups } from "../../data/adminNavigation";
 import logo from "../../assets/images/header/florya_logo.png";
 

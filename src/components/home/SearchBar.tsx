@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { FiSearch, FiX } from "react-icons/fi";
-import { useShopProducts } from "../../utils/useProducts";
-import { useLocalized } from "../../utils/useLocalized";
+import { useShopProducts } from "../../hooks/useProducts";
+import { useLocalized } from "../../hooks/useLocalized";
 
 const SearchBar = ({ mobile = false }: { mobile?: boolean }) => {
   const { t } = useTranslation();

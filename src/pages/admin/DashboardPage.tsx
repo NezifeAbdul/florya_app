@@ -10,10 +10,10 @@ import PageHeader from "../../components/admin/PageHeader";
 import StatCard from "../../components/admin/StatCard";
 import StatusBadge from "../../components/admin/StatusBadge";
 import Thumb from "../../components/admin/Thumb";
-import { useCollections } from "../../utils/useCollection";
-import { useLatestReviews } from "../../utils/useReviews";
-import { useProductsOverview } from "../../utils/useAdmin";
-import { getAdminSession } from "../../utils/adminAuth";
+import { useCollections } from "../../hooks/useCollection";
+import { useLatestReviews } from "../../hooks/useReviews";
+import { useProductsOverview } from "../../hooks/useAdmin";
+import { getAdminSession } from "../../auth/adminAuth";
 
 const PALETTE = ["#c9a96e", "#d9809f", "#7fc8a9", "#9fb8e8", "#f2b6c6", "#e8c27a"];
 

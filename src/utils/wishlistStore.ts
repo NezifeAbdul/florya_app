@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from "react";
-import { getUserId } from "./auth";
+import { getUserId } from "../auth/auth";
 
 export interface WishlistItem {
   id: number;

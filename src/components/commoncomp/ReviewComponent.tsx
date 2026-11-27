@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import SectionTitle from "../ui/SectionTitle";
 import leaf from "../../assets/images/leaf.webp";
-import { useLatestReviews } from "../../utils/useReviews";
+import { useLatestReviews } from "../../hooks/useReviews";
 
 const initials = (name: string) =>
   name.split(" ").filter(Boolean).map((n) => n[0]).join("").slice(0, 2).toUpperCase() || "?";

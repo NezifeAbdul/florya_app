@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
+import { useTranslation } from "react-i18next";
 import type { Blog } from "../../types/blog.types";
+import { useLocalized } from "../../hooks/useLocalized";
 
 interface BlogCardProps {
   blog: Blog;
@@ -10,12 +12,17 @@ interface BlogCardProps {
 const CHAR_LIMIT = 120;
 
 const BlogCard = ({ blog, featured = false }: BlogCardProps) => {
+  const { t, i18n } = useTranslation();
+  const pick = useLocalized();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const fullText = blog.contentEn?.trim() || blog.excerptEn?.trim() || "";
-  const truncatedText = fullText.length > CHAR_LIMIT
-    ? `${fullText.slice(0, CHAR_LIMIT)}...`
-    : fullText;
+  const isAz = i18n.language.startsWith("az");
+  const title = pick(blog.titleAz, blog.titleEn);
+  const category = pick(blog.categoryTitleAz, blog.categoryTitleEn);
+  const author = pick(blog.authorAz, blog.authorEn);
+
+  const fullText = pick(blog.contentAz, blog.contentEn).trim() || pick(blog.excerptAz, blog.excerptEn).trim();
+  const truncatedText = fullText.length > CHAR_LIMIT ? `${fullText.slice(0, CHAR_LIMIT)}...` : fullText;
   const isLongText = fullText.length > CHAR_LIMIT;
 
   return (
@@ -23,11 +30,7 @@ const BlogCard = ({ blog, featured = false }: BlogCardProps) => {
       <NavLink to={`/blog/${blog.slug}`} className="blog-card__img-link">
         <div className="blog-card__img-wrapper">
           {blog.coverImage ? (
-            <img
-              className="blog-card__img"
-              src={blog.coverImage}
-              alt={blog.titleEn}
-            />
+            <img className="blog-card__img" src={blog.coverImage} alt={title} />
           ) : (
             <div className="blog-card__img-placeholder" />
           )}
@@ -35,12 +38,10 @@ const BlogCard = ({ blog, featured = false }: BlogCardProps) => {
       </NavLink>
 
       <div className="blog-card__body">
-        {blog.categoryTitleEn && (
-          <span className="blog-card__category">{blog.categoryTitleEn}</span>
-        )}
+        {category && <span className="blog-card__category">{category}</span>}
 
         <h3 className="blog-card__title">
-          <NavLink to={`/blog/${blog.slug}`}>{blog.titleEn}</NavLink>
+          <NavLink to={`/blog/${blog.slug}`}>{title}</NavLink>
         </h3>
 
         {fullText && (
@@ -55,15 +56,15 @@ const BlogCard = ({ blog, featured = false }: BlogCardProps) => {
             className="blog-card__readmore-btn"
             onClick={() => setIsExpanded((prev) => !prev)}
           >
-            {isExpanded ? "Show less" : "Read more"}
+            {isExpanded ? t("blog.showLess") : t("blog.readMore")}
           </button>
         )}
 
         <div className="blog-card__meta">
-          <span>{blog.authorEn}</span>
+          <span>{author}</span>
           <span className="dot" />
           <span>
-            {new Date(blog.publishedAt).toLocaleDateString("en-GB", {
+            {new Date(blog.publishedAt).toLocaleDateString(isAz ? "az-AZ" : "en-GB", {
               day: "numeric",
               month: "long",
               year: "numeric",

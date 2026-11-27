@@ -5,7 +5,7 @@ import {
   createReview, deleteReview, getLatestReviews, getReviewsByProduct,
 } from "../services/api/reviewService";
 import type { CreateReviewDto } from "../types/review.types";
-import { getErrorMessage } from "./admin/getErrorMessage";
+import { getErrorMessage } from "../utils/admin/getErrorMessage";
 
 
 const refreshAll = (qc: ReturnType<typeof useQueryClient>) => {

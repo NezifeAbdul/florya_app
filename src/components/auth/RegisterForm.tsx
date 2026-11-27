@@ -6,10 +6,10 @@ import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
-import { registerSchema } from "../../validation/auth.chema";
-import type { RegisterFormValues } from "../../validation/auth.chema";
+import { registerSchema } from "../../validation/auth.schema";
+import type { RegisterFormValues } from "../../validation/auth.schema";
 import { registerRequest, persistSession } from "../../services/api/authService";
-import { authErrorMessage } from "../../utils/authError";
+import { authErrorMessage } from "../../auth/authError";
 import PasswordRules from "./PasswordRules";
 
 interface Props {

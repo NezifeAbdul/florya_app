@@ -100,6 +100,14 @@ const BlogFormBody = ({
     }
   };
 
+  if (categories.isLoading) {
+    return (
+      <Modal open title="Loading..." onClose={onClose}>
+        <div className="adm-modal__body">Loading data...</div>
+      </Modal>
+    );
+  }
+
   return (
     <FormModal
       title={item ? "Edit post" : "New post"}
@@ -199,7 +207,7 @@ const BlogsPage = () => (
     columns={columns}
     searchKeys={["titleEn", "titleAz"]}
     Form={BlogForm}
-    deleteMessage={(b) => `"${b.titleEn}" yazısı silinəcək.`}
+    deleteMessage={(b) => `"${b.titleEn}" will be permanently deleted.`}
   />
 );
 

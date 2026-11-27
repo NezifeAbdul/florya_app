@@ -3,14 +3,14 @@ import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { useProductBySlug } from "../../../utils/useProducts";
+import { useProductBySlug } from "../../../hooks/useProducts";
 import { addToBasketThunk } from "../../../store/basketSlice";
-import { useAppDispatch } from "../../../utils/useAppDispatch";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import WishlistButton from "../../../components/commoncomp/WishlistButton";
 import RecommendedProducts from "../../../components/commoncomp/RecommendedProducts";
 import ProductReviews from "../../../components/commoncomp/ProductReviews";
-import { useRequireAuth } from "../../../utils/useRequireAuth";
-import { useLocalized } from "../../../utils/useLocalized";
+import { useRequireAuth } from "../../../auth/useRequireAuth";
+import { useLocalized } from "../../../hooks/useLocalized";
 import { PageLoader } from "../../../components/commoncomp/Loader";
 
 const ProductDetail = () => {

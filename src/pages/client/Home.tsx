@@ -9,7 +9,7 @@ import service4 from "../../assets/images/service4.jpg";
 import leaf from "../../assets/images/leaf.webp";
 import intro1 from "../../assets/images/intro1.webp";
 import intro2 from "../../assets/images/intro2.webp";
-import diamond2 from "../../assets/images/diamon-yellow.png";
+import diamond2 from "../../assets/images/diamond-yellow.png";
 import diamond1 from "../../assets/images/diamond-pink.png";
 
 import SectionTitle from "../../components/ui/SectionTitle";

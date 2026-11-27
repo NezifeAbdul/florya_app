@@ -31,13 +31,13 @@ const UserForm = ({
   });
 
   return (
-    <FormModal title="Yeni istifadəçi" submitting={submitting} onClose={onClose} onSubmit={handleSubmit(onSubmit)}>
+    <FormModal title="New user" submitting={submitting} onClose={onClose} onSubmit={handleSubmit(onSubmit)}>
       <div className="adm-grid-2">
         <FormField label="First name" error={errors.firstName?.message}>
-          <input {...register("firstName", { required: "Ad tələb olunur" })} />
+          <input {...register("firstName", { required: "First name is required" })} />
         </FormField>
         <FormField label="Last name" error={errors.lastName?.message}>
-          <input {...register("lastName", { required: "Soyad tələb olunur" })} />
+          <input {...register("lastName", { required: "Last name is required" })} />
         </FormField>
       </div>
 
@@ -45,19 +45,19 @@ const UserForm = ({
         <input
           type="email"
           {...register("email", {
-            required: "Email tələb olunur",
-            pattern: { value: /^\S+@\S+\.\S+$/, message: "Email düzgün deyil" },
+            required: "Email is required",
+            pattern: { value: /^\S+@\S+\.\S+$/, message: "Invalid email" },
           })}
         />
       </FormField>
 
-      <FormField label="Password" error={errors.password?.message} hint="Ən azı 6 simvol">
+      <FormField label="Password" error={errors.password?.message} hint="At least 6 characters">
         <input
           type="password"
           autoComplete="new-password"
           {...register("password", {
-            required: "Parol tələb olunur",
-            minLength: { value: 6, message: "Ən azı 6 simvol" },
+            required: "Password is required",
+            minLength: { value: 6, message: "At least 6 characters" },
           })}
         />
       </FormField>
@@ -115,9 +115,9 @@ const UsersPage = () => {
 
   return (
     <>
-      <PageHeader title="Users" subtitle="Qeydiyyatdan keçmiş istifadəçilər">
+      <PageHeader title="Users" subtitle="Registered users">
         <button type="button" className="adm-btn adm-btn--primary" onClick={() => setFormOpen(true)}>
-          <FiPlus /> Əlavə et
+          <FiPlus /> Add user
         </button>
       </PageHeader>
 
@@ -127,7 +127,7 @@ const UsersPage = () => {
             <FiSearch />
             <input value={query} placeholder="Search..." onChange={(e) => setQuery(e.target.value)} />
           </div>
-          <span className="adm-table-count">{rows.length} nəticə</span>
+          <span className="adm-table-count">{rows.length} results</span>
         </div>
 
         <div className="adm-table-scroll">
@@ -182,13 +182,15 @@ const UsersPage = () => {
 
       <ConfirmDialog
         open={!!target}
-        title={target?.isActive ? "İstifadəçini blokla" : "Blokdan çıxar"}
+        title={target?.isActive ? "Block user" : "Unblock user"}
         message={
           target
-            ? `${target.email} istifadəçisi ${target.isActive ? "bloklanacaq" : "yenidən aktiv olacaq"}.`
+            ? `${target.email} will ${target.isActive ? "be blocked" : "be unblocked"}.`
             : ""
         }
-        confirmLabel="Təsdiqlə"
+        confirmLabel={target?.isActive ? "Block" : "Unblock"}
+        tone={target?.isActive ? "danger" : "primary"}
+        loadingLabel="Saving..."
         loading={toggleStatus.isPending}
         onConfirm={() => target && toggleStatus.mutate(target)}
         onCancel={() => setTarget(null)}

@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import ProductCard from "./ProductCard";
 import { ProductCardSkeletonList } from "./ProductCardSkeleton";
 import SectionTitle from "../ui/SectionTitle";
-import { useShopProducts } from "../../utils/useProducts";
-import { useMinDelay } from "../../utils/useMinDelay";
+import { useShopProducts } from "../../hooks/useProducts";
+import { useMinDelay } from "../../hooks/useMinDelay";
 import leaf from "../../assets/images/leaf.webp";
 
 interface Props {

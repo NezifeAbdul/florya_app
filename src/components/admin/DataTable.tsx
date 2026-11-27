@@ -53,7 +53,7 @@ const DataTable = <T extends Entity>({
               }}
             />
           </div>
-          <span className="adm-table-count">{rows.length} nəticə</span>
+          <span className="adm-table-count">{rows.length} results</span>
         </div>
       )}
 
@@ -73,7 +73,7 @@ const DataTable = <T extends Entity>({
             {loading ? (
               <tr>
                 <td colSpan={columns.length + 1} className="adm-table-empty">
-                  Yüklənir...
+                  Loading...
                 </td>
               </tr>
             ) : visible.length === 0 ? (
@@ -94,7 +94,7 @@ const DataTable = <T extends Entity>({
                     <td>
                       <div className="adm-row-actions">
                         {onEdit && (
-                          <button type="button" onClick={() => onEdit(row)} title="Redaktə et">
+                          <button type="button" onClick={() => onEdit(row)} title="Edit">
                             <FiEdit2 />
                           </button>
                         )}

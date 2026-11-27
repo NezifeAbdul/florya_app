@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import { IoSnowOutline, IoSunnyOutline } from "react-icons/io5";
 import leaf from "../../assets/images/leaf.webp";
-import { useCollections } from "../../utils/useCollection";
-import { useLocalized } from "../../utils/useLocalized";
+import { useCollections } from "../../hooks/useCollection";
+import { useLocalized } from "../../hooks/useLocalized";
 import SectionTitle from "../../components/ui/SectionTitle";
 import { PageLoader } from "../../components/commoncomp/Loader";
 

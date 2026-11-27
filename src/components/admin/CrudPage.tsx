@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { ComponentType } from "react";
 import { FiPlus } from "react-icons/fi";
-import { useResource } from "../../utils/useResource";
+import { useResource } from "../../hooks/useResource";
 import type { Column, Entity, FormProps } from "../../types/admin.types";
 import ConfirmDialog from "./ConfirmDialog";
 import DataTable from "./DataTable";
@@ -70,7 +70,7 @@ const CrudPage = <T extends Entity, P>({
       <PageHeader title={title} subtitle={subtitle}>
         {Form && (
           <button type="button" className="adm-btn adm-btn--primary" onClick={() => openForm(null)}>
-            <FiPlus /> Əlavə et
+            <FiPlus /> Add
           </button>
         )}
       </PageHeader>

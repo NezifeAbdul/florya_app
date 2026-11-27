@@ -3,9 +3,9 @@ import { FaStar } from "react-icons/fa";
 import { FiTrash2, FiEdit3, FiX } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useCreateReview, useDeleteReview, useProductReviews } from "../../utils/useReviews";
-import { useRequireAuth } from "../../utils/useRequireAuth";
-import { isAdmin } from "../../utils/auth";
+import { useCreateReview, useDeleteReview, useProductReviews } from "../../hooks/useReviews";
+import { useRequireAuth } from "../../auth/useRequireAuth";
+import { isAdmin } from "../../auth/auth";
 
 const Stars = ({ value, onChange, size = 16 }: { value: number; onChange?: (n: number) => void; size?: number }) => (
   <span className="rv-stars">

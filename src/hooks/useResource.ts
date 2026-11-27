@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import type { ResourceApi } from "../services/api/resourceApi";
-import { getErrorMessage } from "./admin/getErrorMessage";
+import { getErrorMessage } from "../utils/admin/getErrorMessage";
 
 export const useResource = <T, P>(key: string, api: ResourceApi<T, P>) => {
   const queryClient = useQueryClient();

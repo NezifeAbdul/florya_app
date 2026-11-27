@@ -6,8 +6,8 @@ import { IoChevronDown } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import SectionTitle from "../../../components/ui/SectionTitle";
-import { useFaqs, useFaqCategories } from "../../../utils/useFaqs";
-import { useLocalized } from "../../../utils/useLocalized";
+import { useFaqs, useFaqCategories } from "../../../hooks/useFaqs";
+import { useLocalized } from "../../../hooks/useLocalized";
 import leaf from "../../../assets/images/leaf.webp";
 
 const accordionSx = {

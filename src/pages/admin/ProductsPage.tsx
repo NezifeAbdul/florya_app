@@ -163,9 +163,17 @@ const ProductFormBody = ({
     onSubmit(toFormData({ ...rest, slug: detail?.slug || slugify(rest.titleEn), images }));
   };
 
+  if (categories.isLoading || collections.isLoading) {
+    return (
+      <Modal open title="Loading..." onClose={onClose}>
+        <div className="adm-modal__body">Loading data...</div>
+      </Modal>
+    );
+  }
+
   return (
     <FormModal
-      title={detail ? "Məhsulu redaktə et" : "Yeni məhsul"}
+      title={detail ? "Edit product" : "New product"}
       width={760}
       submitting={submitting}
       onClose={onClose}
@@ -184,20 +192,20 @@ const ProductFormBody = ({
             type="number"
             step="0.01"
             {...register("price", {
-              required: "Qiymət tələb olunur",
+              required: "Price is required",
               valueAsNumber: true,
-              min: { value: 0.01, message: "Qiymət 0-dan böyük olmalıdır" },
+              min: { value: 0.01, message: "Price must be greater than 0" },
             })}
           />
         </FormField>
-        <FormField label="Discount price ($)" error={errors.discountPrice?.message} hint="Boş buraxsan endirim olmayacaq">
+        <FormField label="Discount price ($)" error={errors.discountPrice?.message} hint="Leave empty for no discount">
           <input
             type="number"
             step="0.01"
             {...register("discountPrice", {
               validate: (value) => {
                 if (value === "" || value === null || Number.isNaN(Number(value))) return true;
-                return Number(value) < Number(getValues("price")) || "Endirimli qiymət əsas qiymətdən kiçik olmalıdır";
+                return Number(value) < Number(getValues("price")) || "Discount price must be lower than the price";
               },
             })}
           />
@@ -215,7 +223,7 @@ const ProductFormBody = ({
         </FormField>
         <FormField label="Collection">
           <select {...register("collectionId")}>
-            <option value="">Yoxdur</option>
+            <option value="">None</option>
             {collections.data?.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.titleEn}
@@ -228,9 +236,9 @@ const ProductFormBody = ({
           <input
             type="number"
             {...register("stock", {
-              required: "Stok tələb olunur",
+              required: "Stock is required",
               valueAsNumber: true,
-              min: { value: 0, message: "Mənfi ola bilməz" },
+              min: { value: 0, message: "Cannot be negative" },
             })}
           />
         </FormField>
@@ -244,7 +252,7 @@ const ProductFormBody = ({
         </div>
       </div>
 
-      <FormField label="Sizes" hint="Yazıb Enter bas">
+      <FormField label="Sizes" hint="Type and press Enter">
         <Controller
           name="sizes"
           control={control}
@@ -252,7 +260,7 @@ const ProductFormBody = ({
         />
       </FormField>
 
-      <FormField label="Colors" hint="CSS rəng adı (red, white, beige...)">
+      <FormField label="Colors" hint="CSS color name (red, white, beige...)">
         <Controller
           name="colors"
           control={control}
@@ -268,7 +276,7 @@ const ProductFormBody = ({
         </FormField>
       )}
 
-      <FormField label={detail ? "Add new images" : "Images"} hint={detail ? undefined : "İlk şəkil əsas şəkil olacaq"}>
+      <FormField label={detail ? "Add new images" : "Images"} hint={detail ? undefined : "The first image will be the main image"}>
         <Controller
           name="images"
           control={control}
@@ -300,13 +308,13 @@ const ProductForm = ({ item, submitting, onSubmit, onClose }: FormProps<Product,
 const ProductsPage = () => (
   <CrudPage
     title="Products"
-    subtitle="Məhsulların əlavə edilməsi, qiymət və stok idarəsi"
+    subtitle="Add products and manage prices and stock"
     queryKey="products"
     api={productsApi}
     columns={columns}
     searchKeys={["titleEn", "titleAz", "categoryTitleEn"]}
     Form={ProductForm}
-    deleteMessage={(p) => `"${p.titleEn}" məhsulu silinəcək.`}
+    deleteMessage={(p) => `"${p.titleEn}" will be permanently deleted.`}
   />
 );
 

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { FiX, FiHeart } from "react-icons/fi";
 import { useWishlist } from "../../../utils/wishlistStore";
-import { useToken } from "../../../utils/authStore";
+import { useToken } from "../../../auth/authStore";
 
 const Wishlist = () => {
   const { t } = useTranslation();

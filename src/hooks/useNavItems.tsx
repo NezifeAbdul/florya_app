@@ -3,8 +3,8 @@ import { ADMIN_ITEM, NAV_CONFIG } from "../data/navigation";
 import type { MenuItem } from "../data/navigation";
 import { useCollections } from "./useCollection";
 import { useLocalized } from "./useLocalized";
-import { useToken } from "./authStore";
-import { isAdmin } from "./auth";
+import { useToken } from "../auth/authStore";
+import { isAdmin } from "../auth/auth";
 
 export const useNavItems = (): MenuItem[] => {
   const pick = useLocalized();

@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { FiExternalLink, FiLogOut, FiMenu } from "react-icons/fi";
-import { getAdminSession, logoutAdmin } from "../../utils/adminAuth";
+import { getAdminSession, logoutAdmin } from "../../auth/adminAuth";
 import { getInitials } from "./Sidebar";
 
 interface TopbarProps {

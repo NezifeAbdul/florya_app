@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { PASSWORD_RULES } from "../../validation/auth.chema";
+import { PASSWORD_RULES } from "../../validation/auth.schema";
 
 const PasswordRules = ({ value, touched }: { value: string; touched: boolean }) => {
   const { t } = useTranslation();

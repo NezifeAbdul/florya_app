@@ -31,7 +31,7 @@ const TitleForm = ({ item, submitting, onSubmit, onClose }: FormProps<TitleItem,
 
   return (
     <FormModal
-      title={item ? "Redaktə et" : "Yeni əlavə et"}
+      title={item ? "Edit" : "Add new"}
       submitting={submitting}
       onClose={onClose}
       onSubmit={handleSubmit(submit)}
@@ -42,7 +42,7 @@ const TitleForm = ({ item, submitting, onSubmit, onClose }: FormProps<TitleItem,
       <FormField label="Title (AZ)" error={errors.titleAz?.message}>
         <input {...register("titleAz", { required: "Title is required" })} />
       </FormField>
-      <FormField label="Slug" hint="Boş buraxsan başlıqdan avtomatik yaranacaq">
+      <FormField label="Slug" hint="Leave empty to generate it from the title">
         <input {...register("slug")} placeholder="bridal-dresses" />
       </FormField>
     </FormModal>
@@ -65,7 +65,7 @@ const TitleResourcePage = ({ title, subtitle, queryKey, api }: TitleResourcePage
     columns={columns}
     searchKeys={["titleEn", "titleAz"]}
     Form={TitleForm}
-    deleteMessage={(row) => `"${row.titleEn}" silinəcək. Bağlı qeydlər varsa silinmə uğursuz ola bilər.`}
+    deleteMessage={(row) => `"${row.titleEn}" will be permanently deleted. Deletion may fail if related records exist.`}
   />
 );
 

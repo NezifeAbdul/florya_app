@@ -48,7 +48,7 @@ const ImageUpload = ({ files, existing = [], multiple = false, onChange }: Image
 
       <button type="button" className="adm-upload__add" onClick={() => inputRef.current?.click()}>
         <FiPlus />
-        <span>{multiple ? "Add new" : "Seç"}</span>
+        <span>{multiple ? "Add new" : "Choose"}</span>
       </button>
 
       <input ref={inputRef} type="file" accept="image/*" multiple={multiple} hidden onChange={handlePick} />

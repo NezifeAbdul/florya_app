@@ -249,6 +249,8 @@ const az = {
     empty: "Axtarışa uyğun məqalə tapılmadı.",
     readMore: "Davamını oxu",
     showLess: "Daha az",
+    loading: "Yüklənir...",
+    error: "Xəta baş verdi",
   },
     logout: {
     title: "Çıxış edilsin?",

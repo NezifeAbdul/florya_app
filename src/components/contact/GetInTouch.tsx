@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import bridepng from "../../assets/images/image-collection.webp";
 import ContactForm from "./ContactForm";
-import { useReveal } from "../../utils/useReveal";
+import { useReveal } from "../../hooks/useReveal";
 
 const GetInTouch = () => {
   const { t } = useTranslation();

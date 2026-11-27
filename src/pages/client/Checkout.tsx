@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
-import { useAppDispatch, useAppSelector } from "../../utils/useAppDispatch";
+import { useAppDispatch, useAppSelector } from "../../hooks/useAppDispatch";
 import { clearBasketThunk, fetchBasketThunk } from "../../store/basketSlice";
 import { createOrder } from "../../services/api/orderService";
-import { useRequireAuth } from "../../utils/useRequireAuth";
+import { useRequireAuth } from "../../auth/useRequireAuth";
 import { getErrorMessage } from "../../utils/admin/getErrorMessage";
-import { useShopProducts } from "../../utils/useProducts";
-import { useLocalized } from "../../utils/useLocalized";
+import { useShopProducts } from "../../hooks/useProducts";
+import { useLocalized } from "../../hooks/useLocalized";
 
 type Focused = "number" | "expiry" | "cvc" | "name" | "";
 

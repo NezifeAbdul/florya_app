@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { FiMapPin, FiMail, FiPhone, FiInstagram } from "react-icons/fi";
 import { FOOTER_INFO } from "../../data/footerInfo";
-import { useReveal } from "../../utils/useReveal";
+import { useReveal } from "../../hooks/useReveal";
 
 const ContactInfoCards = () => {
   const { t } = useTranslation();

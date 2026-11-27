@@ -4,7 +4,7 @@ import TitleResourcePage from "./TitleResourcePage";
 const FaqCategoriesPage = () => (
   <TitleResourcePage
     title="FAQ categories"
-    subtitle="Frequently asked questionsın qrupları"
+    subtitle="Groups for frequently asked questions"
     queryKey="faq-categories"
     api={faqCategoriesApi}
   />

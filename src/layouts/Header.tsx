@@ -23,15 +23,15 @@ import ConfirmModal from "../components/commoncomp/ConfirmModal";
 import SearchBar from "../components/home/SearchBar";
 import LanguageSwitcher from "../components/commoncomp/LanguageSwitcher";
 
-import { useAppDispatch, useAppSelector } from "../utils/useAppDispatch";
+import { useAppDispatch, useAppSelector } from "../hooks/useAppDispatch";
 import { fetchBasketThunk, resetBasket, toggleBasket } from "../store/basketSlice";
 import { useWishlist } from "../utils/wishlistStore";
-import { useToken } from "../utils/authStore";
+import { useToken } from "../auth/authStore";
 import { logout } from "../services/api/authService";
-import { useHeaderHeight } from "../utils/useHeaderHeight";
-import { useCurrentUser } from "../utils/useCurrentUser";
+import { useHeaderHeight } from "../hooks/useHeaderHeight";
+import { useCurrentUser } from "../auth/useCurrentUser";
 import { useTheme } from "../utils/theme";
-import { useNavItems } from "../utils/useNavItems";
+import { useNavItems } from "../hooks/useNavItems";
 import NavMenu from "./NavMenu";
 
 const Header = () => {

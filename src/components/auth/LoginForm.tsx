@@ -6,10 +6,10 @@ import { useNavigate, Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { FiUser, FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
-import { loginSchema } from "../../validation/auth.chema";
-import type { LoginFormValues } from "../../validation/auth.chema";
+import { loginSchema } from "../../validation/auth.schema";
+import type { LoginFormValues } from "../../validation/auth.schema";
 import { loginRequest, persistSession, getRedirectPathByRole } from "../../services/api/authService";
-import { authErrorMessage } from "../../utils/authError";
+import { authErrorMessage } from "../../auth/authError";
 
 interface Props {
   onSwitchToRegister: (e: MouseEvent) => void;

@@ -6,22 +6,35 @@ interface ConfirmDialogProps {
   message: string;
   loading?: boolean;
   confirmLabel?: string;
+  cancelLabel?: string;
+  loadingLabel?: string;
+  tone?: "danger" | "primary";
   onConfirm: () => void;
   onCancel: () => void;
-  
 }
 
-const ConfirmDialog = ({ open, title = "Əminsiniz?", message, loading, onConfirm, onCancel }: ConfirmDialogProps) => (
+const ConfirmDialog = ({
+  open,
+  title = "Are you sure?",
+  message,
+  loading,
+  confirmLabel = "Delete",
+  cancelLabel = "Cancel",
+  loadingLabel = "Deleting...",
+  tone = "danger",
+  onConfirm,
+  onCancel,
+}: ConfirmDialogProps) => (
   <Modal open={open} title={title} width={420} onClose={onCancel}>
     <div className="adm-modal__body">
       <p className="adm-confirm-text">{message}</p>
     </div>
     <div className="adm-modal__foot">
       <button type="button" className="adm-btn adm-btn--ghost" onClick={onCancel}>
-        Ləğv et
+        {cancelLabel}
       </button>
-      <button type="button" className="adm-btn adm-btn--danger" onClick={onConfirm} disabled={loading}>
-        {loading ? "Silinir..." : "Delete"}
+      <button type="button" className={`adm-btn adm-btn--${tone}`} onClick={onConfirm} disabled={loading}>
+        {loading ? loadingLabel : confirmLabel}
       </button>
     </div>
   </Modal>

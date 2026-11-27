@@ -249,6 +249,8 @@ const en = {
     empty: "No articles match your search.",
     readMore: "Read more",
     showLess: "Show less",
+    loading: "Loading...",
+    error: "Something went wrong",
   },
     logout: {
     title: "Log out?",

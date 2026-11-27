@@ -38,7 +38,7 @@ const CollectionForm = ({ item, submitting, onSubmit, onClose }: FormProps<Admin
 
   return (
     <FormModal
-      title={item ? "Kolleksiyanı redaktə et" : "Yeni kolleksiya"}
+      title={item ? "Edit collection" : "New collection"}
       submitting={submitting}
       onClose={onClose}
       onSubmit={handleSubmit(submit)}
@@ -49,7 +49,7 @@ const CollectionForm = ({ item, submitting, onSubmit, onClose }: FormProps<Admin
       <FormField label="Title (AZ)" error={errors.titleAz?.message}>
         <input {...register("titleAz", { required: "Title is required" })} />
       </FormField>
-      <FormField label="Image" hint={item ? "Yeni şəkil seçməsən köhnəsi qalır" : undefined}>
+      <FormField label="Image" hint={item ? "The current image is kept unless you choose a new one" : undefined}>
         <Controller
           name="image"
           control={control}
@@ -65,13 +65,13 @@ const CollectionForm = ({ item, submitting, onSubmit, onClose }: FormProps<Admin
 const CollectionsPage = () => (
   <CrudPage
     title="Collections"
-    subtitle="Mövsüm və tematik kolleksiyalar"
+    subtitle="Seasonal and themed collections"
     queryKey="collections"
     api={collectionsApi}
     columns={columns}
     searchKeys={["titleEn", "titleAz"]}
     Form={CollectionForm}
-    deleteMessage={(c) => `"${c.titleEn}" kolleksiyası silinəcək.`}
+    deleteMessage={(c) => `"${c.titleEn}" will be permanently deleted.`}
   />
 );
 

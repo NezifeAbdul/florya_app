@@ -2,10 +2,10 @@ import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { FiEdit2, FiPlus, FiSearch, FiTrash2 } from "react-icons/fi";
 import { toast } from "react-toastify";
-import { useFaqCategories } from "../../utils/useFaqs";
+import { useFaqCategories } from "../../hooks/useFaqs";
 import {
   useAdminFaqs, useDeleteFaq, useDeleteFaqCategory, useSaveFaq, useSaveFaqCategory,
-} from "../../utils/useAdmin";
+} from "../../hooks/useAdmin";
 import { getErrorMessage } from "../../utils/admin/getErrorMessage";
 import type { Faq, FaqCategory, FaqCategoryPayload, FaqPayload } from "../../types/faq.types";
 import Modal from "../../components/admin/Modal";

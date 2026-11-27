@@ -5,7 +5,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 import ProductCard from "../commoncomp/ProductCard";
-import { useFeaturedProducts } from "../../utils/useProducts";
+import { useFeaturedProducts } from "../../hooks/useProducts";
 import { ProductCardSkeletonList } from "../commoncomp/ProductCardSkeleton";
 
 const CardCarousel = () => {

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import floralLogo from "../../src/assets/images/header/florya_logo.png";
 import { LuPhoneCall, LuMapPin, LuMail, LuArrowUpRight, LuCopyright } from "react-icons/lu";
 import { RiInstagramLine, RiPinterestLine, RiFacebookBoxLine, RiTiktokLine } from "react-icons/ri";
-import { useNavItems } from "../utils/useNavItems";
+import { useNavItems } from "../hooks/useNavItems";
 import { sendSubscribe } from "../services/emailService";
 import { FOOTER_INFO } from "../data/footerInfo";
 import NavMenu from "./NavMenu";

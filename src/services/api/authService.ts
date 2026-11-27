@@ -1,7 +1,7 @@
 import axiosInstance from "../../lib/axiosInstance";
 import type { AuthResponse, AuthUser, LoginApiResponse, UserRole } from "../../types/auth.types";
-import { tokenStorage } from "../../utils/tokenStorage";
-import type { LoginFormValues, RegisterFormValues } from "../../validation/auth.chema";
+import { tokenStorage } from "../../auth/tokenStorage";
+import type { LoginFormValues, RegisterFormValues } from "../../validation/auth.schema";
 
 const toAuthUser = (data: {
   id: string;
