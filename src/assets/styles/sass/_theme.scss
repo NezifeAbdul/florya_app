@@ -1,0 +1,231 @@
+:root {
+  color-scheme: light;
+  --bg: #f9f1ee;
+  --surface: #ffffff;
+  --surface-2: #f2ece4;
+  --cream: #fdf8f4;
+  --text: #1a1a1a;
+  --text-muted: #555555;
+  --text-faint: #888888;
+  --border: #e8e2da;
+  --border-strong: rgba(26, 26, 26, 0.2);
+  --hover-bg: rgba(26, 26, 26, 0.05);
+  --brand-text: #8e462a;
+  --header-bg: rgba(255, 255, 255, 0.96);
+  --topbar-bg: linear-gradient(90deg, #fdf0e8 0%, #fdf8f4 50%, #fdf0e8 100%);
+  --logo-filter: brightness(0.08);
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  --overlay: rgba(28, 18, 8, 0.45);
+  --danger: #c0392b;
+  --success: #2e7d4f;
+  --star: #e0a100;
+
+  --ft-bg: #faf6f1;
+  --ft-surface: #f2ece4;
+  --ft-border: rgba(0, 0, 0, 0.08);
+  --ft-text: rgba(30, 20, 10, 0.52);
+  --ft-text-hi: rgba(30, 20, 10, 0.88);
+  --ft-faint: rgba(30, 20, 10, 0.32);
+  --ft-logo-filter: brightness(0) opacity(0.82);
+
+  --header-h: 160px;
+  --header-h-sm: 94px;
+
+  // köhnə komponentlərdə qalan adlar
+  --c-bg: var(--bg);
+  --c-surface: var(--surface);
+  --c-text: var(--text);
+  --c-line: var(--border);
+}
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #17110c;
+  --surface: #221912;
+  --surface-2: #2a1f17;
+  --cream: #1e1610;
+  --text: #f3ebe3;
+  --text-muted: #b9aca0;
+  --text-faint: #8f8378;
+  --border: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --hover-bg: rgba(255, 255, 255, 0.07);
+  --brand-text: #e8a07f;
+  --header-bg: rgba(23, 17, 12, 0.96);
+  --topbar-bg: linear-gradient(90deg, #241a12 0%, #1e1610 50%, #241a12 100%);
+  --logo-filter: brightness(0) invert(1);
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  --overlay: rgba(0, 0, 0, 0.6);
+  --danger: #e0675a;
+  --success: #6bc58b;
+  --star: #f0b429;
+
+  --ft-bg: #1a130d;
+  --ft-surface: #231a13;
+  --ft-border: rgba(255, 255, 255, 0.1);
+  --ft-text: rgba(243, 235, 227, 0.62);
+  --ft-text-hi: rgba(243, 235, 227, 0.95);
+  --ft-faint: rgba(243, 235, 227, 0.4);
+  --ft-logo-filter: brightness(0) invert(1) opacity(0.85);
+}
+
+@media (max-width: 991px) {
+  :root { --header-h: 118px; --header-h-sm: 58px; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background .3s ease, color .3s ease;
+}
+
+:focus-visible { outline: 2px solid #c9704a; outline-offset: 3px; }
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) { outline: none; }
+
+select option { background: var(--surface); color: var(--text); }
+
+.accordion {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-color: var(--text);
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-active-color: var(--text);
+}
+
+:where(input, select, textarea) {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+
+.app-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: var(--bg);
+  transition: opacity .6s ease, visibility .6s ease;
+
+  img { height: 64px; filter: var(--logo-filter); animation: loader-pulse 1.6s ease-in-out infinite; }
+  &.hide { opacity: 0; visibility: hidden; }
+}
+
+.page-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  img { height: 44px; filter: var(--logo-filter); animation: loader-pulse 1.6s ease-in-out infinite; }
+}
+
+.app-preloader__bar {
+  position: relative;
+  width: 120px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--border);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    background: #c9704a;
+    animation: loader-slide 1.2s ease-in-out infinite;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--hover-bg) 25%, var(--border) 37%, var(--hover-bg) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes loader-pulse { 0%, 100% { opacity: .45; transform: scale(.96); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes loader-slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+@keyframes skeleton-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+.page-main {
+  padding-top: var(--header-h);
+  min-height: 100vh;
+}
+
+// bütün səhifələr: zoom kiçildəndə də məzmun ortada qalsın
+.container,
+.pd-container,
+.product-container,
+.blog-wrapper > .container,
+.checkout-container {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.page-main > section,
+.page-main > div { max-width: 100%; }
+
+// tövsiyə olunan kartlar tam ekran olmasın
+.recommended {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+
+  &__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+}
+
+.page-main {
+  padding-top: var(--header-h);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.container,
+.pd-container,
+.product-container,
+.checkout-container,
+.recommended {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+:root { --glass: rgba(255, 255, 255, .94); }
+[data-theme="dark"], .dark { --glass: rgba(34, 25, 18, .94); }
+
+html { background: var(--bg); }
+
+.page-main {
+  padding-top: var(--header-h);
+  overflow-x: clip;
+}
+
+
+.page-main .container,
+.page-main .pd-container,
+.page-main .product-container,
+.page-main .checkout-container,
+.page-main .recommended,
+.page-main .wwd-content,
+.page-main .brands-wrapper > .swiper,
+.page-main .carousel-wrapper {
+  width: 100%;
+  max-width: 1240px !important;
+  margin-inline: auto !important;
+  padding-inline: clamp(16px, 4vw, 32px) !important;
+}
+
+
+.page-main .wwd-content { max-width: 1600px !important; padding-inline: 0 !important; }
+.page-main .carousel-wrapper { padding-inline: 0 !important; }
+@media (max-width: 991px) { .recommended__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .recommended__grid { grid-template-columns: 1fr; } }

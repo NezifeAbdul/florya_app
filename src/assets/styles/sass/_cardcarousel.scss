@@ -1,0 +1,36 @@
+@use "./variables" as *;
+
+.carousel-wrapper {
+  width: 100%;
+  padding: 40px 0 70px;
+  overflow: hidden;
+  background: transparent;
+
+  .featured-swiper {
+    width: 100%;
+    padding: 20px 0 50px !important;
+
+    .swiper-slide { background: transparent; }
+
+    .swiper-pagination-bullet {
+      width: 6px;
+      height: 6px;
+      background: $accent;
+      opacity: .35;
+      transition: opacity $tr, transform $tr;
+    }
+    .swiper-pagination-bullet-active { opacity: 1; transform: scale(1.4); }
+  }
+
+  // coverflow kölgələri açıq rəngdə qalmasın
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right {
+    background: linear-gradient(to left, rgba(0, 0, 0, .35), transparent) !important;
+  }
+}
+
+// karusel daxilindəki kartlar dark rejimdə səhifə fonuna uyğun olsun
+[data-theme="dark"] .carousel-wrapper {
+  .product-card-wrapper { background: $surface; border-color: $border; }
+  .prc-info-wrapper { background: $surface; }
+}

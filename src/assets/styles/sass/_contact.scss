@@ -1,0 +1,261 @@
+@use "./variables" as *;
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes iconPop {
+  0%   { transform: scale(.6) rotate(-12deg); opacity: 0; }
+  70%  { transform: scale(1.1) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: .7; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+.fade-in,
+.slide-up {
+  opacity: 0;
+  &.visible { animation: fadeSlideUp .75s cubic-bezier(.22, .68, 0, 1.1) forwards; }
+}
+
+.contact-page {
+  overflow-x: hidden;
+  background: $bg;
+  color: $text;
+  font-family: $font-sans;
+}
+
+.contact-hero {
+  position: relative;
+  width: 100%;
+  height: 92vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center top;
+  will-change: background-position-y;
+
+  .contact-overlay {
+    @include fill-abs;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(10, 8, 6, .55) 0%, rgba(10, 8, 6, .35) 60%, rgba(10, 8, 6, .65) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; padding: 0 20px; text-align: center; }
+}
+
+.contact-info-section {
+  padding: 80px 5%;
+  background: $surface;
+
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @include down(900px) { grid-template-columns: repeat(2, 1fr); }
+    @include down(500px) { grid-template-columns: 1fr; }
+  }
+
+  .info-card {
+    position: relative;
+    padding: 44px 32px;
+    overflow: hidden;
+    background: $surface;
+    border: 1px solid $border;
+    text-align: center;
+    transition: background $tr;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: $accent;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s cubic-bezier(.22, .68, 0, 1.1);
+    }
+
+    &:hover { background: $cream; }
+    &:hover::before { transform: scaleX(1); }
+    &.visible .icon-wrapper svg { animation: iconPop .55s cubic-bezier(.22, .68, 0, 1.1) forwards; }
+
+    .icon-wrapper {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 20px;
+      color: $accent;
+
+      svg { width: 100%; height: 100%; opacity: 0; }
+    }
+
+    h3 { margin: 0 0 10px; font: 400 20px $font-serif; color: $text; }
+    p { margin: 0; font-size: 13px; font-weight: 300; line-height: 1.8; color: $text-muted; }
+  }
+}
+
+.brilliant-section {
+  padding: 50px 20px;
+  text-align: center;
+  background: $bg;
+
+  .brilliant-img { width: 200px; height: 200px; opacity: .6; [data-theme="dark"] & { filter: invert(1); } }
+}
+
+.get-in-touch {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  min-height: 760px;
+  overflow: hidden;
+
+  @include down(860px) { grid-template-columns: 1fr; }
+
+  .git-image-col {
+    position: relative;
+    overflow: hidden;
+
+    @include down(860px) { height: 420px; }
+    &.visible { animation: fadeIn .9s ease forwards; }
+
+    .bride-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 8s ease;
+    }
+    &:hover .bride-img { transform: scale(1.04); }
+
+    .git-image-overlay {
+      @include fill-abs;
+      background: linear-gradient(to right, transparent 40%, $bg 100%);
+      @include down(860px) { background: linear-gradient(to bottom, transparent 50%, $bg 100%); }
+    }
+
+    .git-image-text {
+      position: absolute;
+      bottom: 40px;
+      left: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      span { font: italic 300 18px/1.5 $font-serif; color: $text; }
+    }
+  }
+
+  .git-form-col {
+    padding: 80px 60px 80px 50px;
+    background: $bg;
+
+    @include down(1100px) { padding: 60px 32px; }
+    @include down(500px) { padding: 50px 20px; }
+    &.visible { animation: fadeSlideUp .8s .2s cubic-bezier(.22, .68, 0, 1.1) forwards; }
+
+    .form-eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      font: 500 10px $font-sans;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: $accent;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font: 300 clamp(30px, 4vw, 46px)/1.1 $font-serif;
+      color: $text;
+    }
+
+    .form-subtitle {
+      max-width: 420px;
+      margin: 0 0 40px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: $text-muted;
+    }
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      @include down(500px) { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+
+      label { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: $text-muted; }
+
+      input, select, textarea {
+        @include field;
+        padding: 13px 16px;
+        font-family: $font-sans;
+        font-weight: 300;
+        appearance: none;
+        -webkit-appearance: none;
+
+        &:focus { border-color: $accent; box-shadow: 0 0 0 3px rgba($accent, .15); }
+      }
+
+      select {
+        padding-right: 36px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239e9087' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        cursor: pointer;
+      }
+
+      textarea { min-height: 120px; line-height: 1.6; resize: vertical; }
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      margin-top: 8px;
+      padding: 16px 40px;
+      background: $text;
+      color: $inverse;
+      border: none;
+      border-radius: $radius;
+      font: 500 12px $font-sans;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background $tr, transform .2s, gap $tr;
+
+      svg { width: 16px; height: 16px; transition: transform .3s; }
+
+      &:hover { background: $accent; color: $ink; gap: 16px; svg { transform: translateX(3px) rotate(-5deg); } }
+      &:active { transform: scale(.98); }
+    }
+  }
+}
+.field-error { font-size: 11px; letter-spacing: .02em; color: $danger; }
+.contact-form .submit-btn:disabled { opacity: .6; cursor: not-allowed; }

@@ -1,0 +1,70 @@
+@use "./variables" as *;
+
+.hero-wrapper { width: 100%; overflow: hidden; }
+
+.hero-swiper,
+.hero-inside { width: 100%; height: 100vh; }
+
+.hero-inside { position: relative; }
+
+.hero-image-wrapper {
+  @include fill-abs;
+  overflow: hidden;
+
+  .hero-img {
+    width: 100%;
+    height: 130%; // parallax üçün əlavə hündürlük
+    object-fit: cover;
+    object-position: center top;
+    will-change: transform;
+  }
+}
+
+.hero-overlay {
+  @include fill-abs;
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .45) 100%);
+}
+
+// şəkil üstündədir, mətn hər iki rejimdə ağ qalır
+.hero-content-wrapper {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  text-align: center;
+  transform: translate(-50%, 50%);
+
+  .hero-title {
+    display: block;
+    font: 900 clamp(48px, 8vw, 96px)/1 $font-playfair;
+    letter-spacing: .05em;
+  }
+
+  p {
+    margin: 0;
+    font: 1.1rem $font-rubik;
+    letter-spacing: .08em;
+    opacity: .9;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 14px 36px;
+    background: rgba(0, 0, 0, .55);
+    color: #fff;
+    border: 2px solid #fff;
+    font: .85rem $font-rubik;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    transition: background $tr, color $tr;
+
+    &:hover { background: #fff; color: $ink; }
+  }
+}

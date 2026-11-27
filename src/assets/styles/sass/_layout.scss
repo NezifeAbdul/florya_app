@@ -1,0 +1,17 @@
+@use "./variables" as *;
+
+.page-main { padding-top: var(--header-h) !important; }
+
+.page-main > .home,
+.page-main > .about_container,
+.page-main > .login-section { margin-top: calc(var(--header-h) * -1) !important; }
+
+.faq-container,
+.product-container,
+.blog-wrapper,
+.wishlist-page,
+.contact-wrapper,
+.checkout-wrapper { padding-top: 40px !important; }
+
+.pd-wrapper { padding-top: 40px !important; }
+.collections-wrapper { padding-top: 60px !important; }

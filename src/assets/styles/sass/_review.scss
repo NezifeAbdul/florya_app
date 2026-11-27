@@ -1,0 +1,126 @@
+@use "./variables" as *;
+
+.rvc {
+  padding: 40px 0 20px;
+  overflow: hidden;
+
+  &__swiper {
+    padding: 40px 0 56px !important;
+
+    .swiper-slide {
+      height: auto;
+      opacity: .45;
+      transform: scale(.92);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .swiper-slide-active { opacity: 1; transform: scale(1); }
+
+    .swiper-pagination-bullet {
+      width: 7px;
+      height: 7px;
+      background: $brand;
+      opacity: .3;
+      transition: width .3s, opacity .3s;
+    }
+    .swiper-pagination-bullet-active { width: 22px; border-radius: 4px; opacity: 1; }
+  }
+
+  &__card {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 44px 30px 26px;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(120, 70, 40, .08);
+  }
+
+  &__badge {
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d9a98a, #c9704a);
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 8px 18px rgba(201, 112, 74, .35);
+  }
+
+  &__stars {
+    display: flex;
+    gap: 4px;
+    font-size: 15px;
+    color: $border-strong;
+    .on { color: $star; }
+  }
+
+  &__text {
+    flex: 1;
+    margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    font: italic 400 18px/1.7 $font-serif;
+    color: $text;
+    overflow-wrap: anywhere;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px dashed $border-strong;
+
+    strong { display: block; font: 600 14px $font-rubik; color: $text; }
+    small { font-size: 12px; color: $text-faint; }
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d9a98a, #cf8296);
+    color: #fff;
+    font: 600 13px $font-rubik;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: -8px;
+
+    button {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      background: $surface;
+      border: 1px solid $border;
+      border-radius: 50%;
+      font-size: 20px;
+      color: $brand;
+      cursor: pointer;
+      transition: background $tr, color $tr, transform $tr;
+
+      &:hover { background: $brand; color: #fff; transform: translateY(-2px); }
+    }
+  }
+
+  @include down(640px) {
+    &__card { padding: 40px 22px 22px; }
+    &__text { font-size: 16px; -webkit-line-clamp: 7; }
+  }
+}

@@ -1,0 +1,130 @@
+@use "./variables" as *;
+
+.wishlist-page { padding: 3rem 0 5rem; }
+
+.wishlist-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $border;
+
+  h2 { margin: 0; font-size: 26px; font-weight: 400; letter-spacing: .04em; }
+  span { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: $text-faint; }
+}
+
+.wishlist-empty {
+  padding: 5rem 0;
+  text-align: center;
+
+  &__icon { margin-bottom: 14px; font-size: 42px; opacity: .25; }
+  h2 { margin-bottom: 8px; font-size: 24px; font-weight: 400; }
+  p { margin-bottom: 22px; color: $text-muted; }
+}
+
+.wishlist-btn-link {
+  @include btn-solid;
+  padding: 12px 32px;
+  font-size: 12px;
+  color: $inverse !important;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+
+  @include down(1100px) { grid-template-columns: repeat(3, 1fr); }
+  @include down(768px) { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+.wishlist-card {
+  position: relative;
+
+  &__img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: $surface-2;
+
+    img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; transition: transform .5s ease; }
+  }
+  &:hover &__img img { transform: scale(1.04); }
+
+  &__remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $surface;
+    color: $text;
+    border: none;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    cursor: pointer;
+    transition: background $tr, color $tr;
+
+    &:hover { @include invert; }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    padding: 3px 8px;
+    background: $sale-red;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: .05em;
+  }
+
+  &__soldout {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 8px 0;
+    background: $glass;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  &__info { padding-top: 14px; text-align: center; }
+
+  &__title {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: $text;
+    &:hover { text-decoration: underline; }
+  }
+
+  &__price {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+
+    .old { text-decoration: line-through; color: $text-faint; }
+    .now { font-weight: 500; }
+  }
+
+  &__view {
+    display: inline-block;
+    padding-bottom: 2px;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: $text;
+    border-bottom: 1px solid currentColor;
+    &:hover { opacity: .6; }
+  }
+}

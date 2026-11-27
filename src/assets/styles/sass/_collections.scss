@@ -1,0 +1,110 @@
+@use "./variables" as *;
+
+.collections-wrapper { padding: 60px 0 80px; }
+
+.collections-state { padding: 6rem 0; text-align: center; color: $text-muted; }
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+
+  @include down(640px) { grid-template-columns: 1fr; }
+}
+
+// mətn şəkil üstündədir, ona görə ağ qalır
+.collection-card {
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+
+  &:hover &__img,
+  &:focus-visible &__img { transform: scale(1.02); }
+  &:hover &__overlay { opacity: .55; }
+  &:hover &__btn,
+  &:focus-visible &__btn { background: #fff; color: $ink; }
+  &:hover &__btn svg,
+  &:focus-visible &__btn svg { transform: translateX(4px); }
+  &:hover &__go,
+  &:focus-visible &__go { background: #fff; color: $ink; transform: translate(2px, -2px); }
+
+  &__img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(135deg, #e8d5c4 0%, #c9a98a 100%);
+    transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+
+    &.has-image { background: var(--bg-image) center / cover no-repeat; }
+  }
+
+  // şəkil olmayanda növbələşən gradient
+  &:nth-child(4n + 2) &__img:not(.has-image) { background: linear-gradient(135deg, #c4d4e8 0%, #8aabc9 100%); }
+  &:nth-child(4n + 3) &__img:not(.has-image) { background: linear-gradient(135deg, #d4e8c4 0%, #9ac98a 100%); }
+  &:nth-child(4n + 4) &__img:not(.has-image) { background: linear-gradient(135deg, #e8c4d4 0%, #c98aab 100%); }
+
+  &__overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, .35); transition: opacity .4s; }
+
+  &__season,
+  &__go {
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .18);
+    border: 1px solid rgba(255, 255, 255, .45);
+    color: #fff;
+    font-size: 20px;
+    backdrop-filter: blur(6px);
+    transition: all .3s;
+  }
+  &__season { left: 20px; }
+  &__go { right: 20px; }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 32px;
+  }
+
+  &__count { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: rgba(255, 255, 255, .75); }
+
+  &__title {
+    margin: 0;
+    font: 400 32px $font-playfair;
+    letter-spacing: .04em;
+    text-transform: capitalize;
+    color: #fff;
+
+    @include down(768px) { font-size: 24px; }
+  }
+
+  &__btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .6);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+    transition: all .3s;
+
+    svg { font-size: 15px; transition: transform .3s; }
+  }
+}

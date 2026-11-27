@@ -1,0 +1,169 @@
+$font-playfair: "Playfair", serif;
+$font-rubik:    "Rubik", sans-serif;
+$font-dm:       "DM Sans", sans-serif;
+$font-serif:    "Cormorant Garamond", serif;
+$font-sans:     "Jost", sans-serif;
+
+
+$brand:       #c9704a;
+$brand-light: rgba(201, 112, 74, 0.12);
+$brand-mid:   rgba(201, 112, 74, 0.35);
+$brand-glow:  rgba(201, 112, 74, 0.08);
+$accent:      #c9a96e;
+$gold:        #b07d3a;
+$gold-dark:   #9c6f27;
+$sale-red:    #c0392b;
+$warm-gray:   #9e9087;
+$ink:         #1a1a1a;
+$white:       #ffffff;
+$color-white: #ffffff;
+$sidebar-w:   300px;
+
+
+$bg:            var(--bg);
+$inverse:       var(--bg);
+$surface:       var(--surface);
+$surface-2:     var(--surface-2);
+$cream:         var(--cream);
+$text:          var(--text);
+$charcoal:      var(--text);
+$text-muted:    var(--text-muted);
+$text-faint:    var(--text-faint);
+$border:        var(--border);
+$border-strong: var(--border-strong);
+$hover-bg:      var(--hover-bg);
+$brand-text:    var(--brand-text);
+$header-bg:     var(--header-bg);
+$topbar-bg:     var(--topbar-bg);
+$logo-filter:   var(--logo-filter);
+$shadow:        var(--shadow);
+$overlay:       var(--overlay);
+$danger:        var(--danger);
+$success:       var(--success);
+$star:          var(--star);
+$glass:         color-mix(in srgb, var(--surface) 92%, transparent);
+
+// review
+$rc-orange:      #c0622a;
+$rc-orange-lite: #fde8d8;
+$rc-orange-dark: #8b3a14;
+$rc-glow-a:      #e8874a;
+$rc-glow-b:      #d4522e;
+$rc-glow-c:      #e3c449;
+$rc-glow-d:      #fbdab8;
+
+$tr:        .25s cubic-bezier(.4, 0, .2, 1);
+$radius:    2px;
+$radius-lg: 12px;
+
+@mixin down($w) {
+  @media (max-width: $w) { @content; }
+}
+
+@mixin fill-abs { position: absolute; inset: 0; }
+
+@mixin focus-ring {
+  outline: 2px solid $brand;
+  outline-offset: 3px;
+}
+
+@mixin icon-btn($size: 38px, $radius: 6px, $font: 1.4rem) {
+  width: $size;
+  height: $size;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1.5px solid $brand-mid;
+  border-radius: $radius;
+  color: $brand;
+  font-size: $font;
+  cursor: pointer;
+  transition: background $tr, color $tr, border-color $tr, transform $tr;
+
+  &:hover {
+    background: $brand;
+    color: #fff;
+    border-color: $brand;
+    transform: scale(1.06);
+  }
+}
+
+// aktiv/hover: açıqda qara, tünddə açıq fon
+@mixin invert {
+  background: $text;
+  color: $inverse;
+  border-color: $text;
+}
+
+@mixin btn-solid {
+  display: inline-block;
+  padding: 14px 32px;
+  background: $text;
+  color: $inverse;
+  border: 1px solid $text;
+  font-family: $font-rubik;
+  font-size: .75rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background $tr, border-color $tr;
+
+  &:hover:not(:disabled) { background: $gold-dark; border-color: $gold-dark; color: #fff; }
+  &:disabled { opacity: .4; cursor: not-allowed; }
+}
+
+@mixin btn-outline {
+  display: inline-block;
+  padding: 11px 26px;
+  background: transparent;
+  color: $text;
+  border: 1px solid $text;
+  font-family: $font-rubik;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background $tr, color $tr, border-color $tr;
+
+  &:hover { @include invert; }
+}
+
+@mixin eyebrow {
+  font-family: $font-rubik;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: $brand;
+}
+
+@mixin field {
+  width: 100%;
+  padding: 10px 14px;
+  background: $surface;
+  color: $text;
+  border: 1px solid $border;
+  border-radius: $radius;
+  font: inherit;
+  outline: none;
+  transition: border-color $tr;
+
+  &::placeholder { color: $text-faint; }
+  &:focus { border-color: $brand; }
+}
+
+@mixin clip-card {
+  overflow: hidden;
+  clip-path: polygon(6% 0, 94% 0, 100% 8%, 100% 92%, 94% 100%, 6% 100%, 0 92%, 0 8%);
+}
+
+@mixin zoom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .45s ease;
+  &:hover { transform: scale(1.08); }
+}
